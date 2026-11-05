@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | Lagoon &amp; Leaf</title>
+  <script>
+    (function () {
+      var t = localStorage.getItem('lagoon_theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      var d = localStorage.getItem('lagoon_dir');
+      if (d) document.documentElement.setAttribute('dir', d);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+  <main class="auth-page">
+    <section class="auth-panel">
+      <div class="auth-panel-inner">
+
+        <!-- Controls -->
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-bottom:28px;">
+          <button type="button" class="nav-btn nav-btn-rtl" id="rtl-toggle" title="Toggle RTL/LTR"
+            style="height:34px;"><span class="rtl-text">RTL</span></button>
+          <button type="button" class="nav-btn nav-btn-theme" id="theme-toggle" title="Toggle theme"
+            style="height:34px; width:34px;"><span class="theme-icon">🌙</span></button>
+        </div>
+
+        <a class="brand" href="Home1.html" style="margin-bottom:36px; display:flex;">
+          <img src="assets/boat-mark.svg" alt="Lagoon &amp; Leaf Logo">
+          <span>Lagoon &amp; Leaf</span>
+        </a>
+
+        <h1>Welcome back</h1>
+        <p>Sign in to continue planning your escape.</p>
+
+        <form data-demo-form>
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" required>
+
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input id="password" type="password" placeholder="Enter your password" required>
+            <button class="eye" type="button" data-toggle-password="password" aria-label="Show password">◎</button>
+          </div>
+
+          <div class="auth-meta">
+            <label style="display:flex;align-items:center;gap:7px;margin:0;font-weight:500;">
+              <input type="checkbox" style="width:auto;"> Remember me
+            </label>
+            <a href="forgot-password.html">Forgot password?</a>
+          </div>
+
+          <button class="btn btn-cruise" type="submit" style="width:100%; padding:14px; margin-top:4px;">Sign
+            in</button>
+          <div class="notice" role="status"></div>
+        </form>
+
+        <div class="auth-bottom">
+          New to Lagoon &amp; Leaf? <a href="signup.html">Create an account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/main.js"></script>
+</body>
+
+</html>
