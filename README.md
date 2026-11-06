@@ -3,7 +3,7 @@
 A responsive, static HTML/CSS/JavaScript concept website for a serene Kerala houseboat booking service.
 
 ## Pages
-- `Home1.html` — primary scenic landing page
+- `index.html` (and `Home1.html`) — primary scenic landing page
 - `Home2.html` — alternate editorial/discovery homepage
 - `boats.html` — boats and package cards
 - `gallery.html` — image gallery
