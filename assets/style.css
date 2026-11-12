@@ -1861,3 +1861,472 @@ html[dir="rtl"] .auth-top-controls {
   .comparison-table th, .comparison-table td { padding: 10px 12px; }
   .auth-panel-inner { padding: 32px 24px; }
 }
+
+
+/* ==========================================================================
+   FIXES & ENHANCEMENTS (31 Points Checklist)
+   ========================================================================== */
+
+/* Point 5, 7, 13, 19, 20: High-contrast visible text for buttons & tabs in dark theme */
+[data-theme="dark"] .btn:not(.btn-signin):not(.outline):not(.light),
+[data-theme="dark"] .btn-cruise,
+[data-theme="dark"] .hero .btn:first-child {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn:not(.btn-signin):not(.outline):not(.light):hover,
+[data-theme="dark"] .btn-cruise:hover,
+[data-theme="dark"] .hero .btn:first-child:hover {
+  background: #0d9488 !important;
+  border-color: #0d9488 !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn.light {
+  background: #ffffff !important;
+  color: #0b3937 !important;
+}
+[data-theme="dark"] .navlink.active {
+  color: #2dd4bf !important;
+  font-weight: 700;
+}
+
+/* Point 8: Page Hero Centered Alignment for all devices (768, 1024, desktop) */
+.page-hero {
+  text-align: center;
+}
+.page-hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.page-hero h1,
+.page-hero p,
+.page-hero .eyebrow {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Point 9: Larger icon sizes in Home 1 and Boats pages */
+.trust-icon { font-size: 38px !important; }
+.feature-icon { font-size: 38px !important; }
+.amenity-icon { font-size: 44px !important; }
+.pillar-icon { font-size: 42px !important; }
+
+/* Point 12: Reduce tag outline length (fit content) */
+.tag {
+  display: inline-block !important;
+  width: fit-content !important;
+  max-width: max-content !important;
+  white-space: nowrap !important;
+}
+
+/* Point 14: Reduced image heights in gallery page across all devices */
+.gallery-masonry img {
+  max-height: 250px;
+  object-fit: cover;
+  width: 100%;
+}
+.gallery img {
+  max-height: 240px;
+  object-fit: cover;
+}
+.gallery-feature-img {
+  min-height: 320px !important;
+  max-height: 360px !important;
+}
+
+/* Point 10: Category Tabs for Packages Page */
+.cat-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 36px;
+  flex-wrap: wrap;
+}
+.cat-tab-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: 1.5px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-main);
+  font: 600 13.5px 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cat-tab-btn:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.cat-tab-btn.active {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+
+/* Point 2: FAQ Accordion Dropdown */
+.faq-item {
+  border-bottom: 1px solid var(--card-border);
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  background: none;
+  border: none;
+  font: 700 16.5px 'DM Sans', sans-serif;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+html[dir="rtl"] .faq-q {
+  text-align: right;
+}
+.faq-q:hover {
+  color: var(--teal);
+}
+.faq-icon {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--teal);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+  margin-left: 14px;
+}
+html[dir="rtl"] .faq-icon {
+  margin-left: 0;
+  margin-right: 14px;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease;
+  padding: 0;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.faq-item.open .faq-a {
+  max-height: 300px;
+  opacity: 1;
+  padding-bottom: 22px;
+}
+
+/* Point 3: Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #ffffff;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.25s ease;
+  z-index: 9999;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+html[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 28px;
+}
+
+/* Point 4: Footer Brand & Logo arrangement + Social buttons + Contact Icons */
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+.footer-brand img {
+  width: 38px;
+  height: auto;
+}
+.footer-brand span {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+  font-size: 13.5px;
+  color: var(--footer-text);
+}
+.footer-contact-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.footer-social-wrap {
+  margin-top: 20px;
+}
+.footer-social-wrap h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+.footer-social-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.footer-social-btn:hover {
+  background: var(--teal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.footer-social-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+/* Point 6: Split Section with 2 Images on the Right Side */
+.split-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+.split-images img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease;
+}
+.split-images img:hover {
+  transform: scale(1.02);
+}
+@media (max-width: 600px) {
+  .split-images {
+    grid-template-columns: 1fr;
+  }
+  .split-images img {
+    height: 240px;
+  }
+}
+
+/* Point 1: Author image icon for testimonials */
+.author-avatar {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  flex-shrink: 0;
+  border: 2px solid var(--teal);
+}
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Points 21, 22, 23, 24, 25: Authentication Page Improvements */
+.auth-panel-inner {
+  text-align: center;
+  position: relative;
+}
+.auth-panel-inner .brand {
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.auth-panel-inner h1 {
+  text-align: center;
+}
+.auth-panel-inner p.auth-subtitle,
+.auth-panel-inner > p {
+  text-align: center;
+}
+.auth-social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 22px 0 20px;
+}
+.auth-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  font: 600 13.5px 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.auth-social-btn:hover {
+  border-color: var(--teal);
+  background: var(--tag-bg);
+}
+.auth-social-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--card-border);
+}
+.auth-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px 0 8px;
+  text-align: left;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+html[dir="rtl"] .auth-checkbox-wrap {
+  text-align: right;
+}
+.auth-checkbox-wrap input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+  cursor: pointer;
+}
+.auth-checkbox-wrap a {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* Point 26: 1024px Navbar Layout */
+@media (min-width: 861px) and (max-width: 1160px) {
+  .navinner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    height: 74px !important;
+  }
+  .brand span {
+    font-size: 17px !important;
+  }
+  .brand img {
+    width: 32px !important;
+  }
+  .navlinks {
+    gap: 12px !important;
+    font-size: 13px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+  .navlink {
+    padding: 6px 3px !important;
+  }
+  .nav-actions {
+    gap: 6px !important;
+  }
+  .btn-signin,
+  .btn-cruise {
+    padding: 8px 12px !important;
+    font-size: 12.5px !important;
+  }
+  .nav-btn {
+    height: 34px !important;
+    padding: 0 8px !important;
+  }
+  .nav-btn-theme {
+    width: 34px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Point 27, 28, 30: Last Card Aligned in Center in 768px for Home 1, Home 2, Boats */
+@media (max-width: 860px) and (min-width: 601px) {
+  .grid3 > :last-child:nth-child(odd) {
+    grid-column: 1 / -1 !important;
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+  }
+}
+
+/* Point 29: Arrange cards one by one in mobile view in Home 2 */
+@media (max-width: 600px) {
+  .home2 .grid3,
+  .home2 .grid2,
+  .home2 .seasons-grid,
+  .home2 .experience-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .seasons-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .exp-card {
+    grid-column: 1 !important;
+  }
+}

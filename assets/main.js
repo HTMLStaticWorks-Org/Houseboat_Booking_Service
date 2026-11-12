@@ -88,6 +88,109 @@ function initNavToggle() {
   });
 }
 
+// FAQ Accordion Dropdown
+function initFaqDropdown() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    if (!q) return;
+    q.setAttribute('role', 'button');
+    q.setAttribute('tabindex', '0');
+    
+    const toggle = () => {
+      const isOpen = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+}
+
+// Back to Top Button
+function initBackToTop() {
+  let btn = document.getElementById('back-to-top');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'back-to-top';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.title = 'Back to top';
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 15l-6-6-6 6"/></svg>`;
+    document.body.appendChild(btn);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 320) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Category Tabs for Packages Page
+function initCategoryTabs() {
+  const tabs = document.querySelectorAll('.cat-tab-btn');
+  const cards = document.querySelectorAll('.boat-card');
+  if (!tabs.length || !cards.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.getAttribute('data-cat') || 'all';
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat') || 'all';
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// Password toggle with clean SVG icon
+function initPasswordToggle() {
+  const eyeOpenSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const eyeClosedSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+
+  document.querySelectorAll('[data-toggle-password]').forEach(btn => {
+    const input = document.getElementById(btn.dataset.togglePassword);
+    if (!input) return;
+    btn.innerHTML = eyeOpenSvg;
+    btn.addEventListener('click', () => {
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.innerHTML = show ? eyeClosedSvg : eyeOpenSvg;
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+}
+
+// Fallback for any broken images
+function initImageFallbacks() {
+  const fallbackUrl = 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80';
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      if (img.src !== fallbackUrl) {
+        img.src = fallbackUrl;
+      }
+    });
+  });
+}
+
 // Document ready initialization
 document.addEventListener('DOMContentLoaded', () => {
   // Sync UI state for theme & direction buttons
@@ -110,17 +213,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init mobile nav toggle
   initNavToggle();
 
-  // Password visibility toggle
-  document.querySelectorAll('[data-toggle-password]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const input = document.getElementById(btn.dataset.togglePassword);
-      if (!input) return;
-      const show = input.type === 'password';
-      input.type = show ? 'text' : 'password';
-      btn.textContent = show ? '◉' : '◎';
-      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
-    });
-  });
+  // Init FAQ Accordion Dropdown
+  initFaqDropdown();
+
+  // Init Back to Top
+  initBackToTop();
+
+  // Init Category Tabs
+  initCategoryTabs();
+
+  // Init Password Toggles
+  initPasswordToggle();
+
+  // Init Image Fallbacks
+  initImageFallbacks();
 
   // Demo form handlers
   document.querySelectorAll('form[data-demo-form]').forEach(form => {
