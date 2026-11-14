@@ -274,23 +274,30 @@ img {
   justify-content: center;
   border-radius: 6px;
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
   white-space: nowrap;
   box-sizing: border-box;
+  text-align: center;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
 }
 
-/* Sign-in button: outline variant, matching height with Plan a cruise */
+/* Sign-in button: outline variant */
 .btn-signin {
   border: 1.5px solid var(--teal) !important;
   background: transparent !important;
   color: var(--teal) !important;
-  height: 38px !important;
-  padding: 0 16px !important;
-  font-size: 13.5px !important;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
+  font-size: 14px;
 }
 
 .btn-signin:hover {
@@ -306,9 +313,10 @@ img {
   border: 1.5px solid var(--teal);
   background: var(--teal);
   color: #ffffff !important;
-  height: 38px;
-  padding: 0 18px;
-  font-size: 13.5px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
+  font-size: 14px;
 }
 
 .btn-cruise:hover,
@@ -322,10 +330,12 @@ img {
 
 .btn.outline {
   background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   color: #ffffff !important;
-  padding: 11px 22px;
-  height: auto;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
+  font-size: 14px;
 }
 
 .btn.outline:hover {
@@ -338,14 +348,47 @@ img {
   background: #ffffff;
   border: 1.5px solid #ffffff;
   color: var(--deep) !important;
-  padding: 11px 22px;
-  height: auto;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
+  font-size: 14px;
 }
 
 .btn.light:hover {
   background: var(--bg-body);
   border-color: var(--bg-body);
   transform: translateY(-1px);
+}
+
+/* Specific sizing for navbar desktop actions so navbar stays compact & perfectly aligned */
+.nav-actions .btn-signin,
+.nav-actions .btn-cruise,
+.desktop-actions .btn-signin,
+.desktop-actions .btn-cruise {
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
+}
+
+/* Paired CTA buttons in hero, banner and section callouts: uniform equal size */
+.hero-actions .btn,
+.banner-actions .btn,
+.cta-actions .btn,
+.hero-btns .btn,
+.cta-banner .btn {
+  min-width: 190px;
+  height: 44px;
+  min-height: 44px;
+}
+
+/* Card CTA buttons */
+.boat-card .btn,
+.fleet-card .btn,
+.pkg-card .btn {
+  height: 44px;
+  min-height: 44px;
+  padding: 0 22px;
 }
 
 /* Dark theme button refinements */
@@ -657,10 +700,14 @@ img {
 }
 
 .checks li:before {
-  content: '✓';
-  color: var(--teal);
-  font-weight: 700;
-  margin-right: 10px;
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 .stats {
@@ -1184,7 +1231,7 @@ html[dir="rtl"] .auth-top-controls {
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
-/* Tablet & Moderate Desktop (961px – 1200px including 1024px) */
+/* Tablet & Moderate Desktop (961px - 1200px including 1024px) */
 @media (max-width: 1200px) and (min-width: 961px) {
   .navinner {
     height: 74px;
@@ -1428,7 +1475,7 @@ html[dir="rtl"] .auth-top-controls {
 .trust-item span { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
 
 /* ==========================================================================
-   HOW IT WORKS – STEPS (Home1)
+   HOW IT WORKS - STEPS (Home1)
    ========================================================================== */
 .steps-grid {
   display: grid;
@@ -1786,7 +1833,7 @@ html[dir="rtl"] .auth-top-controls {
 }
 .ig-item:hover img { transform: scale(1.06); }
 .ig-item::after {
-  content: '📷';
+  content: '';
   position: absolute;
   inset: 0;
   display: flex;
@@ -1983,7 +2030,7 @@ html[dir="rtl"] .auth-top-controls {
 .social-link.tripadvisor:hover { background: #34e0a1; border-color: transparent; color: #000; }
 .social-link.whatsapp:hover { background: #25d366; border-color: transparent; color: #fff; }
 
-/* Auth pages – centered single-column (no visual panel) */
+/* Auth pages - centered single-column (no visual panel) */
 .auth-page {
   grid-template-columns: 1fr;
 }
@@ -2005,7 +2052,7 @@ html[dir="rtl"] .auth-top-controls {
 }
 
 /* ==========================================================================
-   RESPONSIVE – NEW COMPONENTS
+   RESPONSIVE - NEW COMPONENTS
    ========================================================================== */
 @media (max-width: 1050px) {
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
