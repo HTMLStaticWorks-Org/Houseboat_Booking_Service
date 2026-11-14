@@ -66,7 +66,8 @@ function initNavToggle() {
   const navLinks = document.getElementById('navlinks');
   if (!navToggle || !navLinks) return;
 
-  navToggle.addEventListener('click', () => {
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     const isOpen = navLinks.classList.toggle('open');
     navToggle.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -79,6 +80,13 @@ function initNavToggle() {
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  // Prevent clicks inside drawer from closing the menu (e.g. toggles)
+  navLinks.addEventListener('click', (e) => {
+    if (!e.target.closest('a')) {
+      e.stopPropagation();
+    }
   });
 
   // Close menu on click outside
