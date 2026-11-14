@@ -1234,41 +1234,57 @@ html[dir="rtl"] .auth-top-controls {
 /* Tablet & Moderate Desktop (961px - 1200px including 1024px) */
 @media (max-width: 1200px) and (min-width: 961px) {
   .navinner {
-    height: 74px;
-    gap: 14px;
+    height: 70px;
+    gap: 10px;
   }
   .brand span {
-    font-size: 18px;
+    font-size: 17px;
   }
   .brand img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
   .navlinks {
-    gap: 12px;
-    font-size: 13px;
+    gap: 6px;
+    font-size: 12.5px;
   }
   .navlink {
     padding: 0 2px;
-    font-size: 13px;
-    height: 36px;
+    font-size: 12.5px;
+    height: 34px;
+    white-space: nowrap;
   }
   .nav-actions {
-    gap: 6px;
+    gap: 5px;
+    flex-shrink: 0;
   }
-  .btn-signin,
-  .btn-cruise {
-    height: 36px !important;
-    padding: 0 12px !important;
-    font-size: 12.5px !important;
+  .desktop-actions .btn-signin,
+  .desktop-actions .btn-cruise,
+  .nav-actions .btn-signin,
+  .nav-actions .btn-cruise {
+    height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
   }
   .nav-btn {
-    height: 36px !important;
-    padding: 0 8px !important;
+    height: 34px !important;
+    padding: 0 7px !important;
+    font-size: 12px !important;
   }
   .nav-btn-theme {
-    width: 36px !important;
-    font-size: 14px !important;
+    width: 34px !important;
+    font-size: 13px !important;
+  }
+  /* Hide RTL/Theme from main nav row; keep only hamburger visible */
+  .nav-btn-rtl,
+  .nav-btn-theme {
+    display: none !important;
+  }
+  .nav-toggle {
+    display: flex !important;
+  }
+  .desktop-actions {
+    display: none !important;
   }
 }
 
@@ -1288,6 +1304,12 @@ html[dir="rtl"] .auth-top-controls {
     display: none;
   }
 
+  /* Hide RTL and Theme buttons from top bar in mobile - they go inside hamburger menu */
+  .nav-btn-rtl,
+  .nav-btn-theme {
+    display: none;
+  }
+
   .mobile-actions {
     display: flex;
     flex-direction: column;
@@ -1295,6 +1317,19 @@ html[dir="rtl"] .auth-top-controls {
     margin-top: 14px;
     padding-top: 14px;
     border-top: 1px solid var(--nav-border);
+  }
+
+  /* Mobile RTL/Theme controls inside hamburger drawer */
+  .mobile-controls {
+    display: flex !important;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--nav-border);
+  }
+
+  .mobile-controls .nav-btn {
+    display: inline-flex !important;
   }
 
   .mobile-actions .btn {
@@ -2449,4 +2484,374 @@ html[dir="rtl"] .auth-checkbox-wrap {
   .exp-card {
     grid-column: 1 !important;
   }
+}
+
+
+/* ==========================================================================
+   ISSUE FIXES - Round 2 (14 issues from screenshot review)
+   ========================================================================== */
+
+/* Issue 1 & 6: Hero sections - two-column layout with image on right side */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  min-height: 100%;
+}
+.hero-split-content {
+  padding: 90px 0;
+}
+.hero-split-image {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 0;
+}
+.hero-split-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(5,40,38,0.35);
+}
+.hero-split-image img:first-child {
+  height: 260px;
+}
+@media (max-width: 960px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+  .hero-split-image {
+    display: none;
+  }
+  .hero-split-content {
+    padding: 70px 0;
+  }
+}
+
+/* Issue 2: Newsletter subscribe button - match input height exactly */
+.newsletter-form button.btn {
+  height: 50px !important;
+  min-height: 50px !important;
+  padding: 0 24px !important;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.newsletter-form input {
+  height: 50px;
+  padding: 0 16px;
+}
+
+/* Issue 3: Navbar stable - no wrap, fixed layout */
+.navinner {
+  flex-wrap: nowrap !important;
+}
+.navlinks {
+  flex-wrap: nowrap !important;
+  overflow: hidden;
+}
+
+/* Issue 4 & 5: CTA tab buttons and package cards CTA alignment */
+.cat-tabs-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin: 0 auto 36px !important;
+  width: 100% !important;
+}
+.cat-tab-btn {
+  flex: 0 0 auto !important;
+}
+
+/* Packages page / Boat cards CTA alignment - perfectly aligned buttons and price */
+.boat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+.boat-card .card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  padding: 24px !important;
+}
+.boat-card .card-body h3 {
+  margin: 4px 0 8px !important;
+}
+.boat-card .card-body p:last-of-type {
+  flex: 1 1 auto !important;
+  margin-bottom: 20px !important;
+}
+.boat-card .card-body .price {
+  margin-top: auto !important;
+  padding-top: 14px !important;
+  font-weight: 700 !important;
+  font-size: 17px !important;
+  color: var(--teal) !important;
+  margin-bottom: 14px !important;
+}
+.boat-card .card-body .btn {
+  margin-top: 0 !important;
+  width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Services page CTA buttons - baseline aligned */
+.feature-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+.feature-card p.muted {
+  flex: 1 1 auto !important;
+  margin-bottom: 20px !important;
+}
+.feature-card .btn {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: auto !important;
+  height: 44px !important;
+  min-height: 44px !important;
+}
+
+/* Issue 7: Contact page sidebar icons - same size (uniform 36x36 circle) */
+.contact-info-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  border-radius: 50% !important;
+  background: var(--sand) !important;
+  color: var(--teal) !important;
+  flex-shrink: 0 !important;
+}
+.contact-info-icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Issue 8: Calendar icon in date input - clearly visible in BOTH light and dark themes */
+input[type="date"] {
+  position: relative;
+  font-family: inherit;
+  color-scheme: light;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.85;
+  filter: brightness(0) saturate(100%) invert(20%); /* Crisp, clearly visible dark icon in light theme */
+  transition: opacity 0.2s ease;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+[data-theme="dark"] input[type="date"] {
+  color-scheme: dark !important;
+  color: var(--input-text) !important;
+  background: var(--input-bg) !important;
+}
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0) saturate(100%) invert(100%) !important; /* Pure bright white icon in dark theme */
+  opacity: 0.95 !important;
+}
+
+/* Issue 9: Contact page footer collapsed - force proper z-index and clear */
+.contact-page .footer,
+body .footer {
+  position: relative;
+  z-index: 1;
+  clear: both;
+}
+.banner {
+  position: relative;
+  z-index: 1;
+}
+.social-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Issue 10: Auth page - social buttons BELOW the tab/heading, before the divider */
+.auth-social-buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 20px 0 !important;
+  width: 100% !important;
+}
+.auth-social-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: 44px !important;
+  border: 1.5px solid var(--input-border) !important;
+  border-radius: 8px !important;
+  background: var(--card-bg) !important;
+  color: var(--text-main) !important;
+  font: 600 14px 'DM Sans', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 20px !important;
+}
+.auth-social-btn:hover {
+  background: var(--bg-surface-alt) !important;
+  border-color: var(--teal) !important;
+  transform: translateY(-1px) !important;
+}
+.auth-social-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Issue 11: Checkbox text alignment in signup */
+.auth-checkbox-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 16px 0 !important;
+  font-size: 13.5px !important;
+  line-height: 1.4 !important;
+  color: var(--text-main) !important;
+  text-align: left !important;
+}
+.auth-checkbox-wrap input[type="checkbox"] {
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  accent-color: var(--teal) !important;
+}
+.auth-checkbox-wrap label {
+  margin: 0 !important;
+  display: inline-block !important;
+  font-weight: 400 !important;
+  font-size: 13.5px !important;
+  line-height: 1.4 !important;
+  cursor: pointer !important;
+  color: var(--text-main) !important;
+}
+.auth-checkbox-wrap a {
+  color: var(--teal) !important;
+  font-weight: 600 !important;
+}
+
+/* Issue 12: Theme/RTL inside hamburger - mobile-controls hidden on desktop */
+.mobile-controls {
+  display: none;
+}
+
+/* Issue 13: 1024px navbar - force hamburger mode from 1024px and below */
+@media (max-width: 1024px) {
+  .navinner {
+    height: 70px;
+    gap: 12px;
+  }
+  .nav-toggle {
+    display: flex !important;
+  }
+  .navlinks {
+    display: none;
+  }
+  .navlinks.open {
+    display: flex;
+  }
+  .desktop-actions {
+    display: none !important;
+  }
+  .nav-actions .nav-btn-rtl,
+  .nav-actions .nav-btn-theme {
+    display: none !important;
+  }
+  .mobile-controls {
+    display: flex !important;
+  }
+  .mobile-controls .nav-btn-rtl,
+  .mobile-controls .nav-btn-theme {
+    display: inline-flex !important;
+  }
+}
+
+/* Issue 14: RTL/Theme outside the card in mobile - auth-top-controls positioning */
+.auth-top-controls {
+  position: fixed !important;
+  top: 18px !important;
+  right: 20px !important;
+  display: flex !important;
+  gap: 10px !important;
+  z-index: 1000 !important;
+}
+html[dir="rtl"] .auth-top-controls {
+  right: auto !important;
+  left: 20px !important;
+}
+@media (max-width: 600px) {
+  .auth-top-controls {
+    position: fixed !important;
+    top: 14px !important;
+    right: 16px !important;
+    z-index: 1000 !important;
+  }
+  html[dir="rtl"] .auth-top-controls {
+    right: auto !important;
+    left: 16px !important;
+  }
+  .auth-panel {
+    padding-top: 60px !important;
+  }
+}
+
+/* Gallery section - add 2 more images to sections */
+.gallery-masonry-extra {
+  columns: 3;
+  column-gap: 16px;
+  margin-top: 16px;
+}
+.gallery-masonry-extra figure {
+  break-inside: avoid;
+  margin: 0 0 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-masonry-extra img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  max-height: 250px;
+  object-fit: cover;
+}
+@media (max-width: 860px) {
+  .gallery-masonry-extra { columns: 2; }
+}
+@media (max-width: 560px) {
+  .gallery-masonry-extra { columns: 1; }
+}
+
+/* Contact page info items - uniform icon */
+.contact-info-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
 }
