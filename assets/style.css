@@ -1276,8 +1276,8 @@ html[dir="rtl"] .auth-top-controls {
     font-size: 13px !important;
   }
   /* Hide RTL/Theme from main nav row; keep only hamburger visible */
-  .nav-btn-rtl,
-  .nav-btn-theme {
+  .navbar .nav-actions .nav-btn-rtl,
+  .navbar .nav-actions .nav-btn-theme {
     display: none !important;
   }
   .nav-toggle {
@@ -1305,8 +1305,8 @@ html[dir="rtl"] .auth-top-controls {
   }
 
   /* Hide RTL and Theme buttons from top bar in mobile - they go inside hamburger menu */
-  .nav-btn-rtl,
-  .nav-btn-theme {
+  .navbar .nav-actions .nav-btn-rtl,
+  .navbar .nav-actions .nav-btn-theme {
     display: none;
   }
 
@@ -2793,32 +2793,109 @@ body .footer {
   }
 }
 
-/* Issue 14: RTL/Theme outside the card in mobile - auth-top-controls positioning */
+/* Authentication pages: RTL and Theme buttons ALWAYS visible and fixed at top-right outside cards across desktop, 1024px, tablet, and mobile */
 .auth-top-controls {
   position: fixed !important;
-  top: 18px !important;
-  right: 20px !important;
+  top: 20px !important;
+  right: 24px !important;
   display: flex !important;
+  align-items: center !important;
   gap: 10px !important;
-  z-index: 1000 !important;
+  z-index: 99999 !important;
 }
+
+.auth-top-controls .nav-btn,
+.auth-top-controls .nav-btn-rtl,
+.auth-top-controls .nav-btn-theme {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 38px !important;
+  background: var(--bg-surface-alt, #f7f3ee) !important;
+  border: 1.5px solid var(--card-border, #d2e4de) !important;
+  color: var(--text-main, #0b3d36) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 14px rgba(5, 40, 38, 0.1) !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+[data-theme="dark"] .auth-top-controls .nav-btn,
+[data-theme="dark"] .auth-top-controls .nav-btn-rtl,
+[data-theme="dark"] .auth-top-controls .nav-btn-theme {
+  background: var(--card-bg, #09332e) !important;
+  border-color: var(--card-border, #144d45) !important;
+  color: var(--text-main, #e8f5f1) !important;
+}
+
+.auth-top-controls .nav-btn-theme {
+  width: 38px !important;
+  padding: 0 !important;
+}
+
+.auth-top-controls .nav-btn-rtl {
+  padding: 0 12px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
 html[dir="rtl"] .auth-top-controls {
   right: auto !important;
-  left: 20px !important;
+  left: 24px !important;
 }
+
+/* 1024px and Tablet view */
+@media (max-width: 1024px) {
+  .auth-top-controls {
+    top: 18px !important;
+    right: 20px !important;
+    display: flex !important;
+    z-index: 99999 !important;
+  }
+  .auth-top-controls .nav-btn,
+  .auth-top-controls .nav-btn-rtl,
+  .auth-top-controls .nav-btn-theme {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  html[dir="rtl"] .auth-top-controls {
+    right: auto !important;
+    left: 20px !important;
+  }
+}
+
+/* Mobile view (<= 600px) */
 @media (max-width: 600px) {
   .auth-top-controls {
-    position: fixed !important;
     top: 14px !important;
     right: 16px !important;
-    z-index: 1000 !important;
+    display: flex !important;
+    z-index: 99999 !important;
+  }
+  .auth-top-controls .nav-btn,
+  .auth-top-controls .nav-btn-rtl,
+  .auth-top-controls .nav-btn-theme {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 36px !important;
+  }
+  .auth-top-controls .nav-btn-theme {
+    width: 36px !important;
   }
   html[dir="rtl"] .auth-top-controls {
     right: auto !important;
     left: 16px !important;
   }
+  .auth-page {
+    padding-top: 64px !important;
+  }
   .auth-panel {
     padding-top: 60px !important;
+    margin-top: 10px !important;
   }
 }
 
