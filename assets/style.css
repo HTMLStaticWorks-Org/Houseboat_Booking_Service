@@ -2521,15 +2521,55 @@ html[dir="rtl"] .auth-checkbox-wrap {
 .hero-split-image img:first-child {
   height: 260px;
 }
-@media (max-width: 960px) {
+/* Tablet & Mobile Hero Split - ensure images are always visible */
+@media (max-width: 1024px) {
   .hero-split {
     grid-template-columns: 1fr;
-  }
-  .hero-split-image {
-    display: none;
+    gap: 32px;
   }
   .hero-split-content {
-    padding: 70px 0;
+    padding: 60px 0 10px;
+    text-align: center;
+  }
+  .hero-split-content .hero-actions {
+    justify-content: center;
+  }
+  .hero-split-image {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 0 50px;
+    width: 100%;
+  }
+  .hero-split-image img {
+    height: 220px !important;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(5, 40, 38, 0.25);
+  }
+  .hero-split-image img:first-child {
+    height: 220px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-split {
+    gap: 24px;
+  }
+  .hero-split-content {
+    padding: 40px 0 10px;
+    text-align: center;
+  }
+  .hero-split-image {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 0 36px;
+  }
+  .hero-split-image img,
+  .hero-split-image img:first-child {
+    height: 150px !important;
+    border-radius: 8px;
   }
 }
 
